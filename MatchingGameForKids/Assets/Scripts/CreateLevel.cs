@@ -7,16 +7,16 @@ using UnityEngine.UI;
 public class CreateLevel : MonoBehaviour
 {
     [SerializeField] Image correctAnimalImage;
-
-    [SerializeField] string correctAnimal;
     [SerializeField] List<Sprite> allAnimals;
     [SerializeField] List<Image> randomAnimalImage;
+    public static List<Image> StaticList = new();
 
     public static int randomNumCorrect;
     int correctNum, randomNum1, randomNum2;
 
     void Start()
     {
+        StaticList = randomAnimalImage;
         ChooseCorrectAnimal();
         ChooseRandomNumber();
         PutRandomAnimal();
@@ -28,18 +28,20 @@ public class CreateLevel : MonoBehaviour
         
     }
 
+    /*
     public static void NewGame()
     {
         var ng = new CreateLevel();
         ng.ChooseCorrectAnimal();
         ng.ChooseRandomNumber();
         ng.PutRandomAnimal();
-    }
+    }*/
 
     public void ChooseCorrectAnimal()
     {
+        
+
         correctNum = Random.Range(0, allAnimals.Count);
-        correctAnimal = allAnimals[correctNum].name;
         correctAnimalImage.sprite = allAnimals[correctNum];
 
         randomNumCorrect = Random.Range(0, 3);
